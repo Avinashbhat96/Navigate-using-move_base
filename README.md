@@ -18,6 +18,14 @@ Included Topics:
 
 - /get_robo_stat - It is a custom message to publish the different status of the robot. Status such as, Moving (While moving towards goal), Difficult-to-reach (When robot fails to reach goal), rotated (soon after first rotation for localization is done).
 
+
+# Start gerty package to see robot moving
+Launch the multi robots environment and then:
+
+```bash
+roslaunch gerty start.launch robot_id:=1/2/3/4
+```
+robot_id is the id for your robot
 # Algorithm Description
 Once goals have been sorted according the algorithm, this goals need to be published to the one of the move_base topic. Once it is published, work is not done!. Because as we know, once goal has been reached, we have to give other goal to move towards. Also, if robot fails to move towards goal, after few trials move_base will abort the mission. That's why it is always important to keep checking the movement of the robot. So we check the distance covered by robot at particular interval of time. If robot fails to move specified distance in the given time, then it will consider that goal to be difficult to reach and publishes that status. Then new goal will be given from the sorting package and starts moving towards next goal.
 
